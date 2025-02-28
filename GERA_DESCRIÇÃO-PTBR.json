@@ -1,0 +1,511 @@
+{
+  "last_node_id": 191,
+  "last_link_id": 412,
+  "nodes": [
+    {
+      "id": 106,
+      "type": "LoadImage",
+      "pos": [
+        323.5698547363281,
+        148.14158630371094
+      ],
+      "size": [
+        539.0718383789062,
+        504.0683898925781
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            277,
+            409
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "0321c0959879664 (2).png",
+        "image"
+      ]
+    },
+    {
+      "id": 110,
+      "type": "DownloadAndLoadFlorence2Model",
+      "pos": [
+        -156.2996826171875,
+        181.9308624267578
+      ],
+      "size": [
+        399.9561767578125,
+        125.58181762695312
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "lora",
+          "type": "PEFTLORA",
+          "shape": 7,
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "links": [
+            270
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DownloadAndLoadFlorence2Model"
+      },
+      "widgets_values": [
+        "microsoft/Florence-2-base",
+        "fp16",
+        "sdpa"
+      ]
+    },
+    {
+      "id": 111,
+      "type": "Florence2Run",
+      "pos": [
+        -151.8668670654297,
+        402.1109924316406
+      ],
+      "size": [
+        395.5909423828125,
+        358.5331115722656
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 277
+        },
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "link": 270
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "links": [
+            408,
+            412
+          ],
+          "slot_index": 2
+        },
+        {
+          "name": "data",
+          "type": "JSON",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Florence2Run"
+      },
+      "widgets_values": [
+        "",
+        "more_detailed_caption",
+        true,
+        true,
+        512,
+        3,
+        true,
+        "",
+        399714167704923,
+        "randomize",
+        [
+          false,
+          true
+        ]
+      ]
+    },
+    {
+      "id": 186,
+      "type": "DeepTranslatorTextNode",
+      "pos": [
+        -164.0411376953125,
+        861.4669799804688
+      ],
+      "size": [
+        424.157958984375,
+        193
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 408
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            407
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DeepTranslatorTextNode"
+      },
+      "widgets_values": [
+        "english",
+        "portuguese",
+        false,
+        "",
+        "",
+        "GoogleTranslator [free]",
+        "",
+        "proxy_hide",
+        "authorization_hide",
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ],
+        [
+          false,
+          true
+        ]
+      ]
+    },
+    {
+      "id": 187,
+      "type": "ShowText|pysssss",
+      "pos": [
+        286.62432861328125,
+        740.1898803710938
+      ],
+      "size": [
+        541.574951171875,
+        332.0434265136719
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 407
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "shape": 6,
+          "links": null
+        }
+      ],
+      "title": "TRADUÇÃO",
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "A imagem é um retrato de uma jovem mulher com longos cabelos loiros. Ela está usando uma grande coroa de flores na cabeça, que é composta de flores rosa e roxa. As flores são dispostas de maneira em cascata, com algumas se sobrepõem. A mulher está olhando para o lado com uma expressão séria em seu rosto. Ela tem batom escuro e seus cabelos são estilizados em ondas soltas. O fundo é uma cor cinza simples, tornando a mulher o ponto focal da imagem."
+      ]
+    },
+    {
+      "id": 188,
+      "type": "ShowText|pysssss",
+      "pos": [
+        856.114990234375,
+        740.46630859375
+      ],
+      "size": [
+        529.8123779296875,
+        330.74761962890625
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 412
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "shape": 6,
+          "links": null
+        }
+      ],
+      "title": "ORIGINAL",
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "The image is a portrait of a young woman with long blonde hair. She is wearing a large flower crown on her head, which is made up of pink and purple flowers. The flowers are arranged in a cascading manner, with some overlapping each other. The woman is looking off to the side with a serious expression on her face. She has dark lipstick on and her hair is styled in loose waves. The background is a plain grey color, making the woman the focal point of the image."
+      ]
+    },
+    {
+      "id": 189,
+      "type": "easy showAnything",
+      "pos": [
+        947.9442138671875,
+        279.9381103515625
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "shape": 7,
+          "link": 410
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "LARGURA",
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "597"
+      ]
+    },
+    {
+      "id": 190,
+      "type": "easy showAnything",
+      "pos": [
+        948.53271484375,
+        419.08135986328125
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "shape": 7,
+          "link": 411
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "title": "ALTURA",
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "602"
+      ]
+    },
+    {
+      "id": 191,
+      "type": "Get Image Size",
+      "pos": [
+        947.8566284179688,
+        170.72537231445312
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 409
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            410
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            411
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Get Image Size"
+      },
+      "widgets_values": []
+    }
+  ],
+  "links": [
+    [
+      270,
+      110,
+      0,
+      111,
+      1,
+      "FL2MODEL"
+    ],
+    [
+      277,
+      106,
+      0,
+      111,
+      0,
+      "IMAGE"
+    ],
+    [
+      407,
+      186,
+      0,
+      187,
+      0,
+      "STRING"
+    ],
+    [
+      408,
+      111,
+      2,
+      186,
+      0,
+      "STRING"
+    ],
+    [
+      409,
+      106,
+      0,
+      191,
+      0,
+      "IMAGE"
+    ],
+    [
+      410,
+      191,
+      0,
+      189,
+      0,
+      "*"
+    ],
+    [
+      411,
+      191,
+      1,
+      190,
+      0,
+      "*"
+    ],
+    [
+      412,
+      111,
+      2,
+      188,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8769226950000016,
+      "offset": [
+        468.89535169020644,
+        -20.205407686887483
+      ]
+    },
+    "workspace_info": {
+      "id": "tn2wr6gjBJPNV950dOz0l"
+    },
+    "node_versions": {
+      "ComfyUI-Florence2": "dffd12506d50f0540b8a7f4b36a05d4fb5fed2de",
+      "masquerade-nodes-comfyui": "432cb4d146a391b387a0cd25ace824328b5b61cf",
+      "ComfyUI-Easy-Use": "a80845f641ac81a8ba190d499c785d9eb9d80ef7",
+      "comfy-core": "0.3.18",
+      "ComfyUI-Custom-Scripts": "bc8922deff73f59311c05cef27b9d4caaf43e87b",
+      "ComfyUI_Custom_Nodes_AlekPet": "0a6595727b993c4eb575b37e3cf03ee63cebdd03"
+    },
+    "ue_links": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0
+  },
+  "version": 0.4
+}
